@@ -1,4 +1,4 @@
-- 👋 Hi, I’m @benlawson1
+- 👋 Hi, I’m Ben Lawson
 - 👀 I’m interested in Computers, Servers, Networks, Linux, Scripting, Programming
 - 🌱 I’m currently learning Pentesting at TryHackMe
 - 💞️ I’m looking to collaborate on Pentesting projects

@@ -1,0 +1,58 @@
+I've been going through the learning paths on TryHackMe.com. This is what I have learned from this experience. The majority of CTFs are based on web servers. This makes sense because web servers are accessible from an internet connection, this makes them more vulnerable to attacks.
+ 
+The majority of CTFs are going to start with an NMAP scan. This allows you to see the attack surface of a system with open ports, services, and service versions. In order to interact with other devices, ports are opened to run services as either the client or server. 
+ 
+NMAP - scans for open ports and services 
+ 
+#quick nmap 
+cmd: nmap -Pn -T5 [IP] 
+ 
+#basic nmap 
+cmd: nmap -v -sC -sV [IP] 
+ 
+#through nmap 
+cmd: nmap -A -T4 -p- [IP]  
+ 
+#nmap vulnerability 
+cmd: nmap -sV -vv - - script vuln [IP] 
+ 
+#more common for Windows 
+cmd: nmap -sV -vv --script vuln [IP]  
+ 
+#more specific after finding open ports 
+cmd: nmap -T4 -A -sC -sV --script=vuln -p22,80,3306 10.10.156.87  
+ 
+#scanning for script FTP 
+cmd: nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount MACHINE_IP 
+ 
+#SMB vuln 
+cmd: nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse $I
+ 
+Since most CTFs are web servers, once you have the IP address, try putting the IP address in the web browser. Also try starting a gobuster scan:
+
+Port 80
+#Check web source code
+#Run gobuster scan to find hidden web directories
+cmd: gobuster dir -u http://[IP] -w [wordlist path] -x php,sh,txt,cgi,html,js,css,py -t 200 --no-errors
+
+Common Directories
+robots.txt
+uploads
+admin
+administrator
+config
+
+#dirsearch: gobuster alternate - scans hidden web directories
+cmd: dirsearch -u $IP -e php,html,txt,aspx,css -w /opt/dir -t 50 -r
+
+#Vuln scan with Nikto
+cmd: nikto -h “http://[IP]”
+
+Get Source Code in terminal
+curl - pulls page source
+ 
+Port 21: FTP
+Port 22: SSH
+Port 139 or 445: SMB
+
+To be continued...

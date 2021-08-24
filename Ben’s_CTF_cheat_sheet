@@ -52,21 +52,21 @@ cmd: dirsearch -u $IP -e php,html,txt,aspx,css -w /opt/dir -t 50 -r
 #Vuln scan with Nikto
 cmd: nikto -h “http://[IP]”
 
-Get Source Code in terminal
+#Get Source Code in terminal
 curl - pulls page source
  
 PORT 21: FTP
 
-log into ftp 
+#log into ftp 
 cmd: ftp $IP 
 
-if you find username, try brute forcing password 
+#if you find username, try brute forcing password 
 cmd: hydra for ftp: hydra -l [user] -P /opt/rockyou.txt ftp://[IP] 
 
-get file from ftp 
+#get file from ftp 
 cmd: get file.txt 
 
-add file to ftp 
+#add file to ftp 
 cmd: put file.txt 
 
 #Mounting an FTP share, exploiting ProFTPd 

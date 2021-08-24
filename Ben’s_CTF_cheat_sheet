@@ -1,6 +1,8 @@
-I've been going through the learning paths on TryHackMe.com. This is what I have learned from this experience. The majority of CTFs are based on web servers. This makes sense because web servers are accessible from an internet connection, this makes them more vulnerable to attacks.
+I've been going through the learning paths on TryHackMe.com. This is what I have learned from this experience. The majority of CTFs are based on web servers. 
+This makes sense because web servers are accessible from an internet connection, this makes them more vulnerable to attacks.
  
-The majority of CTFs are going to start with an NMAP scan. This allows you to see the attack surface of a system with open ports, services, and service versions. In order to interact with other devices, ports are opened to run services as either the client or server. 
+The majority of CTFs are going to start with an NMAP scan. This allows you to see the attack surface of a system with open ports, services, and service versions. 
+In order to interact with other devices, ports are opened to run services as either the client or server. 
  
 NMAP - scans for open ports and services 
  

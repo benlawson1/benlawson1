@@ -1,5 +1,5 @@
 - 👋 Hi, I’m Ben Lawson
-- 👀 I’m interested in Technology: Computers, Servers, Networks, Linux, Scripting, Programming
+- 👀 I’m interested in Technology: Computers, Servers, Networks, PowerShell, Scripting, Programming
 - 🌱 I’m currently learning PowerShell through various websites
 - 💞️ I’m looking to collaborate on PowerShell projects
 - 📫 How to reach me ...

@@ -1,6 +1,6 @@
 I've been going through the learning paths on TryHackMe.com. This is what I have learned from this experience. The majority of CTFs are based on web servers. 
 This makes sense because web servers are accessible from an internet connection, this makes them more vulnerable to attacks. For example, it is much easier to
-identify security vulnerabilities a local store because it allows public access, unlike a house, which is private and normally locked from public access. Since a web 
+identify security vulnerabilities in a local store because it allows public access, unlike a house, which is private and normally locked from public access. Since a web 
 server has to be accessed publicly on the web, it leaves itself vulnerable to attacks 24/7. 
 
 In order for perform NMAP scans, you have to be on the same network as the target machine (most like a web server). When you are connected to the internet, you are 

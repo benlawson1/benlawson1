@@ -3,7 +3,7 @@ This makes sense because web servers are accessible from an internet connection,
 identify security vulnerabilities in a local store because it allows public access, unlike a house, which is private and normally locked from public access. Since a web 
 server has to be accessed publicly on the web, it leaves itself vulnerable to attacks 24/7. 
 
-In order for perform NMAP scans, you have to be on the same network as the target machine (most like a web server). When you are connected to the internet, you are 
+In order for perform NMAP scans, you have to be on the same network as the target machine (most likely a web server). When you are connected to the internet, you are 
 connected to the worlds largest public network. It might seem obvious but when you are able to a ping of www.google.com, this means that you are on the same network 
 that the web server at Google or at least the web servers that hosts Google web page.
 

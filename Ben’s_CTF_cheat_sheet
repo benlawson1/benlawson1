@@ -1,10 +1,24 @@
 I've been going through the learning paths on TryHackMe.com. This is what I have learned from this experience. The majority of CTFs are based on web servers. 
-This makes sense because web servers are accessible from an internet connection, this makes them more vulnerable to attacks.
+This makes sense because web servers are accessible from an internet connection, this makes them more vulnerable to attacks. For example, it is much easier to
+identify security vulnerabilities a local store because it allows public access, unlike a house, which is private and normally locked from public access. Since a web 
+server has to be accessed publicly on the web, it leaves itself vulnerable to attacks 24/7. 
+
+In order for perform NMAP scans, you have to be on the same network as the target machine (most like a web server). When you are connected to the internet, you are 
+connected to the worlds largest public network. It might seem obvious but when you are able to a ping of www.google.com, this means that you are on the same network 
+that the web server at Google or at least the web servers that hosts Google web page.
+
+It's important to understand the difference between private networks and public networks, in order to understand the attack surface. What is vulnerable to attacks? 
+When you purchase home internet, you are given both a public IP and a range of private IP addresses. What happens when you access a website, the router converts your 
+private IP address to a public IP address, in order to communicate with a web server. This is called NAT (network address translation). 
+
+The home internet router is also a firewall, meant to prevent requests that were not send by someone inside the network. It allows traffic to enter back into your
+private network only because it was first requested by a device on the private network. This is why clicking on unknown websites or email links are so dangerous, the
+request comes from a device on your private network, allowing that traffic back into your private network.
+
+Back to NMAP scans, the majority of CTFs are going to start with an NMAP scan. This allows you to see the attack surface of a system with open ports, services, and 
+service versions. In order to interact with other devices, ports are opened to run services as either the client or server. 
  
-The majority of CTFs are going to start with an NMAP scan. This allows you to see the attack surface of a system with open ports, services, and service versions. 
-In order to interact with other devices, ports are opened to run services as either the client or server. 
- 
-NMAP - scans for open ports and services 
+NMAP - scans for open ports and services (more complex NMAP scans find more vulnerabilities but take longer to scan)
  
 #quick nmap 
 cmd: nmap -Pn -T5 [IP] 
@@ -30,7 +44,8 @@ cmd: nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount MACHINE_IP
 #SMB vuln 
 cmd: nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse $I
  
-Since most CTFs are web servers, once you have the IP address, try putting the IP address in the web browser. Also try starting a gobuster scan:
+Since most CTFs are web servers, once you have the IP address, try putting the IP address in the web browser. Also try starting a gobuster scan (gobuster scans 
+attempt to find subpages, these subpages can sometimes cause vulnerabilities):
 
 PORT 80 - HTTP
 
